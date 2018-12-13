@@ -26,10 +26,12 @@ namespace MNS.RK
         public double GetDistance(int n, double[] p, double[] x)
         {
             double d = 0.0;
-
+            double r;
             for (int i = 0; i < n; ++i)
-                d += (p[i] - x[i]) * (p[i] - x[i]);
-
+            {
+                r = p[i] - x[i];
+                d += r * r;
+            }
             d = Math.Sqrt(d);
             return d;
         }
