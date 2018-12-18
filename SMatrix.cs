@@ -1,5 +1,7 @@
 ﻿using System;
 using System.IO;
+using System.Runtime.CompilerServices;
+using System.Text;
 
 namespace MNS
 {
@@ -8,8 +10,6 @@ namespace MNS
 /// </summary>
     public class SMatrix
     {
-        public static Func<int, int, int> GetIndex = (i, j) => { return (i >= j) ? j + i * (i + 1) / 2 : i + j * (j + 1) / 2; };
-
         protected int N;
         protected readonly int NMax;
         protected double[] D;
@@ -40,6 +40,14 @@ namespace MNS
             return NMax;
         }
 
+        public static Func<int, int, int> Index = (i, j) => { return (i >= j) ? j + i * (i + 1) / 2 : i + j * (j + 1) / 2; };
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public int GetIndex(int i, int j)
+        {
+            return (i >= j) ? j + i * (i + 1) / 2 : i + j * (j + 1) / 2;
+        }
+
         public double this[int i, int j]      
         {
             get { return D[(i >= j) ? j + i * (i + 1) / 2 : i + j * (j + 1) / 2]; }
@@ -54,18 +62,20 @@ namespace MNS
             return buf;
         }
 
-        public void Print()
+        public override string ToString()
         {
+            StringBuilder sb = new StringBuilder();
             int ij;
             for (int i = 0; i < N; ++i)
             {
                 for (int j = 0; j < N; ++j)
                 {
                     ij = GetIndex(i, j);
-                    Console.Write($"{D[ij]:e2} ");
+                    sb.AppendFormat($"{D[ij]:e2} ");
                 }
-                Console.WriteLine();
+                sb.AppendLine();
             }
+            return sb.ToString();
         }
 
         public static void Save(SMatrix m, string filePath)
