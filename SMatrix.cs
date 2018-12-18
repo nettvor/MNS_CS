@@ -40,6 +40,12 @@ namespace MNS
             return NMax;
         }
 
+        public double this[int i, int j]      
+        {
+            get { return D[(i >= j) ? j + i * (i + 1) / 2 : i + j * (j + 1) / 2]; }
+            set { D[(i >= j) ? j + i * (i + 1) / 2 : i + j * (j + 1) / 2] = value; }
+        }
+
         public double[] CopyMatrix()
         {
             int size = N * (N + 1) / 2;
