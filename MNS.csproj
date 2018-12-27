@@ -64,6 +64,7 @@
     <Compile Include="RK\BRK1.cs" />
     <Compile Include="RK\BRK2.cs" />
     <Compile Include="RK\BRKBase.cs" />
+    <Compile Include="RK\BRKR.cs" />
     <Compile Include="SMatrix.cs" />
     <Compile Include="SPDMatrix.cs" />
     <Compile Include="Spline.cs" />

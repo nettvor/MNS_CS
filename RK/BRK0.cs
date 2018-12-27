@@ -3,9 +3,9 @@
 namespace MNS.RK
 {
     /// <summary>
-    /// C0 Bessel potential reproducing kernel
+    /// C Bessel potential reproducing kernel
     /// </summary>
-    public class BRK0 : BRKBase
+    sealed public class BRK0 : BRKBase
     {
         public BRK0() { }
 
