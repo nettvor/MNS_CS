@@ -18,49 +18,7 @@ namespace MNS.RK
             this.e = e;
         }
 
-        public double GetDistance(double p, double x)
-        {
-            return Math.Abs(p - x);
-        }
-
-        public double GetDistance(int n, double[] p, double[] x)
-        {
-            double d = 0.0;
-            double r;
-            for (int i = 0; i < n; ++i)
-            {
-                r = p[i] - x[i];
-                d += r * r;
-            }
-            d = Math.Sqrt(d);
-            return d;
-        }
-
-        public virtual double[] GetGramMatrix(int m, double[] p)
-        {
-            double[] grm = new double[m * (m + 1) / 2];
-            Parallel.For(0, m, i =>
-            {
-                for (int j = 0; j <= i; ++j)
-                    grm[j + i * (i + 1) / 2] = GetRKValue(p[j] - p[i]);
-            });
-            return grm;
-        }
-
-        public virtual double[] GetGramMatrix(int m, int n, List<double[]> p)
-        {
-            double[] grm = new double[m * (m + 1) / 2];
-            Parallel.For(0, m, i =>
-            {
-                for (int j = 0; j <= i; ++j)
-                {
-                    double d = GetDistance(n, p[j], p[i]);
-                    grm[j + i * (i + 1) / 2] = GetRKValue(d);
-                }
-            });
-            return grm;
-        }
-
+        internal abstract int R { get; }
         internal abstract double GetRKValue(double r);
         internal abstract double GetRKValue(double x, double pi);
     }

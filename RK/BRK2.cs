@@ -9,6 +9,8 @@ namespace MNS.RK
     {
         public BRK2() { }
 
+        internal override int R { get { return 2; } }
+
         override internal double GetRKValue(double d)
         {
             double r = e * Math.Abs(d);

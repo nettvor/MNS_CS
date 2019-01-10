@@ -20,7 +20,9 @@ namespace MNS.RK
             a = new double[r + 1];
             this.r = r;
         }
-        
+
+        internal override int R { get { return r; } }
+
         override internal double GetRKValue(double d)
         {
             double r = e * Math.Abs(d);

@@ -4,9 +4,10 @@ namespace MNS
 {
     interface ISpline
     {
+        int R { get; }
         void Prepare(List<double[]> p);
         void Prepare(double[] p);
-        double GetCond();
+        int GetCond();
         double[] GetCoefficients(double[] b);
         double GetSplineValue(double x);
         double GetSplineValue(double[] x);
